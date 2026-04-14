@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { Heart, Sparkles, Gift } from 'lucide-react';
 import { Typewriter } from 'react-simple-typewriter';
-import patakaSound from '../assets/music/birthday.mp3';
+import patakaSound from '../assets/music/pataka.mp3';
 
 const Surprise = () => {
   const [showSurprise, setShowSurprise] = useState(false);
