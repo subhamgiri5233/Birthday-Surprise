@@ -62,6 +62,36 @@ h1, h2, h3, .font-serif {
 
   .heart-clip {
     clip-path: url(#heart-clip);
-    will-change: clip-path;
+    will-change: transform, opacity;
+  }
+
+  /* Premium Glassmorphism */
+  .glass-card {
+    @apply bg-white/40 backdrop-blur-xl border border-white/40 shadow-2xl;
+    box-shadow: 0 8px 32px 0 rgba(255, 182, 193, 0.2);
+  }
+
+  /* Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Performance optimization: content-visibility */
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1000px;
+  }
+
+  /* Premium Animated Background */
+  body {
+    background: linear-gradient(-45deg, #fff5f5, #fff0f6, #fff5f5, #ffeaf2);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 }

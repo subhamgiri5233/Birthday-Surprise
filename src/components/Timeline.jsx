@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Star, Heart, Camera, Coffee, MapPin } from 'lucide-react';
+import { Star, Heart, Camera, Coffee } from 'lucide-react';
 
 const memories = [
   {
@@ -37,35 +37,40 @@ const memories = [
 const TimelineItem = ({ memory, index }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.2,
+    threshold: 0.1,
   });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-      animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.8, delay: index * 0.2 }}
-      className={`relative flex items-center justify-between mb-16 w-full ${
-        index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-      }`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, delay: index * 0.1 }}
+      className={`relative flex items-center justify-center mb-16 w-full md:justify-between ${
+        index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+      } flex-col`}
     >
-      {/* Connector Line */}
-      <div className="absolute left-1/2 -translate-x-1/2 w-1 h-full bg-romantic-peach/30 -z-10" />
+      {/* Connector Line - Hidden on Mobile, shown on MD+ */}
+      <div className="hidden md:block absolute left-1/2 -translate-x-1/2 w-1 h-full bg-romantic-peach/30 -z-10" />
 
       {/* Content */}
-      <div className="w-[45%]">
-        <div className="glass-card p-6 border-l-4 border-romantic-pink hover:shadow-2xl transition-shadow cursor-default">
-          <span className="text-sm font-bold text-romantic-pink tracking-widest uppercase mb-2 block">
-            {memory.date}
-          </span>
+      <div className="w-full md:w-[45%] px-4">
+        <div className="glass-card p-6 border-l-4 border-romantic-pink hover:shadow-2xl transition-all duration-300">
+          <div className="flex items-center gap-3 mb-2">
+             <div className={`md:hidden w-8 h-8 rounded-full ${memory.color} flex items-center justify-center`}>
+                {React.cloneElement(memory.icon, { size: 16 })}
+             </div>
+             <span className="text-sm font-bold text-romantic-pink tracking-widest uppercase block">
+                {memory.date}
+              </span>
+          </div>
           <h3 className="text-2xl font-serif text-gray-800 mb-3">{memory.title}</h3>
-          <p className="text-gray-600 leading-relaxed font-light whitespace-pre-line">{memory.description}</p>
+          <p className="text-gray-600 leading-relaxed font-light whitespace-pre-line text-sm md:text-base">{memory.description}</p>
         </div>
       </div>
 
-      {/* Icon Node */}
-      <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
+      {/* Icon Node - Desktop Only */}
+      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center justify-center">
         <motion.div
           animate={inView ? { scale: [0, 1.2, 1] } : {}}
           className={`w-12 h-12 rounded-full ${memory.color} border-4 border-white shadow-xl flex items-center justify-center`}
@@ -74,15 +79,15 @@ const TimelineItem = ({ memory, index }) => {
         </motion.div>
       </div>
 
-      {/* Spacer for the other side */}
-      <div className="w-[45%]" />
+      {/* Spacer for the other side - Desktop Only */}
+      <div className="hidden md:block w-[45%]" />
     </motion.div>
   );
 };
 
 const Timeline = () => {
   return (
-    <section className="py-24 px-6 max-w-5xl mx-auto overflow-hidden">
+    <section className="py-24 px-4 md:px-6 max-w-5xl mx-auto overflow-hidden">
       <div className="text-center mb-20">
         <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-4">Our Love Story</h2>
         <div className="w-24 h-1 bg-romantic-pink mx-auto rounded-full" />
