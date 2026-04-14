@@ -1,0 +1,67 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+@theme {
+  --color-romantic-pink: #ff4b5c;
+  --color-romantic-peach: #fad0c4;
+  --color-romantic-soft: #fff5f5;
+  
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Outfit", sans-serif;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+}
+
+:root {
+  background-color: #fff5f5;
+  color: #333;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fad0c4;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff4b5c;
+}
+
+@layer components {
+  .btn-romantic {
+    @apply px-8 py-3 bg-romantic-pink text-white rounded-full font-semibold shadow-lg hover:bg-romantic-pink/90 transition-all active:scale-95;
+  }
+  
+  .glass-card {
+    @apply bg-white/40 backdrop-blur-md border border-white/30 rounded-3xl shadow-xl;
+  }
+
+  .heart-clip {
+    clip-path: url(#heart-clip);
+    will-change: clip-path;
+  }
+}
