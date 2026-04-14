@@ -3,15 +3,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { Heart, Sparkles, Gift } from 'lucide-react';
 import { Typewriter } from 'react-simple-typewriter';
-import patakaSound from '../assets/music/birthday.mp3';
+import patakaSound from '../assets/music/pataka.mp3';
 
 const Surprise = () => {
   const [showSurprise, setShowSurprise] = useState(false);
 
   const handleReveal = () => {
-    // Play pataka sound
+    // Play pataka sound and stop after 15 seconds
     const audio = new Audio(patakaSound);
     audio.play().catch(e => console.log("Audio play failed:", e));
+    setTimeout(() => {
+      audio.pause();
+      audio.currentTime = 0;
+    }, 15000);
 
     setShowSurprise(true);
 
