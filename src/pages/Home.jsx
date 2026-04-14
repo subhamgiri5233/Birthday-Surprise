@@ -6,6 +6,7 @@ import Gallery from '../components/Gallery';
 import Surprise from '../components/Surprise';
 import MusicPlayer from '../components/MusicPlayer';
 import HeartRain from '../components/HeartRain';
+import FloatingHeader from '../components/FloatingHeader';
 import { Lock } from 'lucide-react';
 
 const Home = () => {
@@ -89,8 +90,9 @@ const Home = () => {
             key="story"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex flex-col"
+            className="flex flex-col relative"
           >
+            <FloatingHeader />
             <HeartRain />
             <Timeline />
             <Gallery />

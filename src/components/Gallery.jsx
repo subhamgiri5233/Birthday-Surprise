@@ -21,7 +21,6 @@ import img14 from '../assets/images/img14.jpg';
 
 const Gallery = () => {
   // 15 photos in a triangle (5-4-3-2-1) for desktop
-  // For mobile, we will use a simpler grid
   const desktopRows = [
     [img1, img2, img3, img4, img5],
     [img6, img7, img8, img9],
@@ -33,34 +32,51 @@ const Gallery = () => {
   const allPhotos = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img1];
 
   return (
-    <section className="py-24 px-4 md:px-6 bg-white/50 overflow-hidden">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 px-4">
-          <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-4 tracking-tight uppercase">Love Triangle of Memories</h2>
-          <p className="text-romantic-pink italic font-light">আমাদের ভালোবাসার প্রতিটি মুহূর্ত (Pampi)...</p>
+    <section className="py-32 px-4 md:px-6 relative overflow-hidden">
+      {/* Background Decorative Sparkle */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-romantic-pink/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-romantic-peach/10 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/2" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div className="text-center mb-20 px-4">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-6xl font-serif text-gray-800 mb-6 tracking-tight premium-glow"
+          >
+            Memories Wrapped in Love
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="text-romantic-pink italic font-light text-lg md:text-xl"
+          >
+            Our beautiful journey together, Monalisa...
+          </motion.p>
         </div>
 
         <PhotoProvider>
           {/* Desktop View: Triangle Formation */}
-          <div className="hidden md:flex flex-col items-center gap-4">
+          <div className="hidden md:flex flex-col items-center gap-6">
             {desktopRows.map((row, rowIndex) => (
-              <div key={rowIndex} className="flex justify-center gap-4 w-full">
+              <div key={rowIndex} className="flex justify-center gap-6 w-full">
                 {row.map((src, imgIndex) => (
                   <motion.div
                     key={`${rowIndex}-${imgIndex}`}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.5, delay: imgIndex * 0.05 }}
-                    className="relative group cursor-pointer md:w-32 md:h-32 lg:w-40 lg:h-40 p-1"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, delay: rowIndex * 0.1 + imgIndex * 0.05 }}
+                    className="relative group cursor-pointer w-36 h-36 lg:w-44 lg:h-44"
                   >
                     <PhotoView src={src}>
-                      <div className="w-full h-full relative group transform transition-all duration-300 hover:scale-110 active:scale-95 z-10 shadow-lg heart-clip">
-                        <div className="w-full h-full bg-white heart-clip p-1">
+                      <div className="w-full h-full relative group transform transition-all duration-500 hover:rotate-3 hover:scale-105 active:scale-95 z-10 shadow-xl heart-clip">
+                        <div className="w-full h-full bg-white/80 backdrop-blur-sm heart-clip p-1.5 shadow-inner">
                           <img
                             src={src}
                             alt={`Memory Row ${rowIndex + 1}`}
-                            className="w-full h-full object-cover heart-clip transition-transform duration-700 group-hover:scale-125"
+                            className="w-full h-full object-cover heart-clip transition-transform duration-1000 group-hover:scale-110"
                             loading="lazy"
                           />
                         </div>
@@ -72,20 +88,20 @@ const Gallery = () => {
             ))}
           </div>
 
-          {/* Mobile View: Balanced Grid for Visibility & Performance */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:hidden px-2">
+          {/* Mobile View: High Performance Scrollable Grid */}
+          <div className="grid grid-cols-2 gap-4 md:hidden px-2">
             {allPhotos.map((src, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-20px" }}
-                transition={{ duration: 0.4 }}
-                className="relative group cursor-pointer aspect-square p-1"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index % 4 * 0.05 }}
+                className="relative group cursor-pointer aspect-square"
               >
                 <PhotoView src={src}>
-                  <div className="w-full h-full relative group z-10 shadow-md heart-clip">
-                    <div className="w-full h-full bg-white heart-clip p-1">
+                  <div className="w-full h-full relative z-10 shadow-lg heart-clip">
+                    <div className="w-full h-full bg-white/80 heart-clip p-1 shadow-inner">
                       <img
                         src={src}
                         alt={`Memory ${index + 1}`}
@@ -103,9 +119,10 @@ const Gallery = () => {
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="text-center mt-12 text-gray-400 italic font-serif px-4"
+          transition={{ delay: 0.5 }}
+          className="text-center mt-20 text-romantic-pink/60 italic font-serif px-4 text-xl md:text-2xl"
         >
-          ভালোবাসার প্রতিটি স্পন্দন তোমার জন্য...
+          ভালোবাসার প্রতিটি স্পন্দন শুধু তোমার জন্য...
         </motion.div>
       </div>
     </section>

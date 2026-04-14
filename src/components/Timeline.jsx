@@ -54,13 +54,13 @@ const TimelineItem = ({ memory, index }) => {
       <div className="hidden md:block absolute left-1/2 -translate-x-1/2 w-1 h-full bg-romantic-peach/30 -z-10" />
 
       {/* Content */}
-      <div className="w-full md:w-[45%] px-4">
-        <div className="glass-card p-6 border-l-4 border-romantic-pink hover:shadow-2xl transition-all duration-300">
-          <div className="flex items-center gap-3 mb-2">
-             <div className={`md:hidden w-8 h-8 rounded-full ${memory.color} flex items-center justify-center`}>
-                {React.cloneElement(memory.icon, { size: 16 })}
+      <div className="w-full md:w-[45%] px-6">
+        <div className="glass-card p-8 md:p-10 border-l-8 border-romantic-pink/50 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+          <div className="flex items-center gap-4 mb-4">
+             <div className={`md:hidden w-10 h-10 rounded-full ${memory.color} flex items-center justify-center shadow-inner`}>
+                {React.cloneElement(memory.icon, { size: 20 })}
              </div>
-             <span className="text-sm font-bold text-romantic-pink tracking-widest uppercase block">
+             <span className="text-xs font-bold text-romantic-pink tracking-[0.2em] uppercase block">
                 {memory.date}
               </span>
           </div>
