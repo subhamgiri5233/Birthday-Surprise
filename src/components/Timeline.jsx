@@ -50,8 +50,8 @@ const TimelineItem = ({ memory, index }) => {
         index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
       } flex-col`}
     >
-      {/* Connector Line - Hidden on Mobile, shown on MD+ */}
-      <div className="hidden md:block absolute left-1/2 -translate-x-1/2 w-1 h-full bg-romantic-peach/30 -z-10" />
+      {/* Connector Line - Shown on all devices */}
+      <div className="absolute left-1/2 -translate-x-1/2 w-0.5 md:w-1 h-full bg-romantic-peach/30 -z-10" />
 
       {/* Content */}
       <div className="w-full md:w-[45%] px-6">
