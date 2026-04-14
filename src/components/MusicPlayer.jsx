@@ -6,7 +6,7 @@ const MusicPlayer = ({ isPlaying, setIsPlaying }) => {
   const audioRef = useRef(null);
   const [isMuted, setIsMuted] = useState(false);
 
-  const musicUrl = birthdayMusic; 
+  const musicUrl = birthdayMusic;
 
   useEffect(() => {
     if (audioRef.current) {

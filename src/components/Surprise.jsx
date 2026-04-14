@@ -9,13 +9,15 @@ const Surprise = () => {
   const [showSurprise, setShowSurprise] = useState(false);
 
   const handleReveal = () => {
-    // Play pataka sound and stop after 15 seconds
+    // Play pataka sound
     const audio = new Audio(patakaSound);
+    audio.loop = true; // Loop to ensure it lasts 16 seconds
     audio.play().catch(e => console.log("Audio play failed:", e));
+    
+    // Stop playing after 16 seconds
     setTimeout(() => {
       audio.pause();
-      audio.currentTime = 0;
-    }, 15000);
+    }, 16000);
 
     setShowSurprise(true);
 
