@@ -54,7 +54,7 @@ it’s a **digital expression of love, memories, and emotions**.
 
 **Subham Giri**
 
-Made with ❤️ for Monalisa
+Made with ❤️ for ____
 
 ---
 
