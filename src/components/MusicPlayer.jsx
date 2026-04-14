@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Volume2, VolumeX, Music } from 'lucide-react';
-import birthdayMusic from '../assets/music/birthday.mp3';
+import birthdayMusic from '../assets/music/pataka.mp3';
 
 const MusicPlayer = ({ isPlaying, setIsPlaying }) => {
   const audioRef = useRef(null);
