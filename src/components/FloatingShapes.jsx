@@ -15,19 +15,19 @@ const FloatingShapes = memo(() => {
   };
 
   const colors = [
-    'text-romantic-yellow/20',
-    'text-romantic-pink/20',
-    'text-romantic-purple/20',
-    'text-white/10'
+    'text-romantic-yellow/40',
+    'text-romantic-pink/40',
+    'text-romantic-purple/40',
+    'text-white/20'
   ];
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
       {shapes.map((_, i) => {
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        const animationDuration = 20 + Math.random() * 30;
-        const animationDelay = Math.random() * -30;
-        const rotationSpeed = 10 + Math.random() * 20;
+        const animationDuration = 10 + Math.random() * 20;
+        const animationDelay = Math.random() * -20;
+        const rotationSpeed = 5 + Math.random() * 15;
 
         return (
           <div
