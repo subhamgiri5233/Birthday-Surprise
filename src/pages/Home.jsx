@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, lazy, Suspense } from 'react';
 import Hero from '../components/Hero';
-import Timeline from '../components/Timeline';
-import Gallery from '../components/Gallery';
-import Surprise from '../components/Surprise';
-import MusicPlayer from '../components/MusicPlayer';
-import HeartRain from '../components/HeartRain';
-import FloatingHeader from '../components/FloatingHeader';
 import { Lock } from 'lucide-react';
+
+const Timeline = lazy(() => import('../components/Timeline'));
+const Gallery = lazy(() => import('../components/Gallery'));
+const Surprise = lazy(() => import('../components/Surprise'));
+const MusicPlayer = lazy(() => import('../components/MusicPlayer'));
+const FloatingHearts = lazy(() => import('../components/FloatingHearts'));
+const FloatingHeader = lazy(() => import('../components/FloatingHeader'));
 
 const Home = () => {
   const [step, setStep] = useState('landing'); // 'landing', 'password', 'story'
@@ -32,29 +32,18 @@ const Home = () => {
 
   return (
     <div className="relative font-sans text-gray-800 bg-romantic-soft min-h-screen">
-      <MusicPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+      <Suspense fallback={null}>
+        <MusicPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+      </Suspense>
 
-      <AnimatePresence mode="wait">
-        {step === 'landing' && (
-          <motion.div
-            key="landing"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.8 }}
-          >
-            <Hero onStart={handleStart} />
-          </motion.div>
-        )}
+      {step === 'landing' && (
+        <div>
+          <Hero onStart={handleStart} />
+        </div>
+      )}
 
         {step === 'password' && (
-          <motion.div
-            key="password"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.1 }}
-            className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-romantic-peach/20 to-romantic-soft"
-          >
+          <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-romantic-peach/20 to-romantic-soft">
             <div className="glass-card p-10 max-w-md w-full text-center">
               <div className="w-16 h-16 bg-romantic-pink/10 text-romantic-pink rounded-full flex items-center justify-center mx-auto mb-6">
                 <Lock size={32} />
@@ -82,21 +71,22 @@ const Home = () => {
                 </button>
               </form>
             </div>
-          </motion.div>
+          </div>
         )}
 
         {step === 'story' && (
-          <motion.div
-            key="story"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="flex flex-col relative"
-          >
-            <FloatingHeader />
-            <HeartRain />
-            <Timeline />
-            <Gallery />
-            <Surprise />
+          <div className="flex flex-col relative">
+            <Suspense fallback={
+              <div className="min-h-screen flex items-center justify-center">
+                <div className="w-12 h-12 border-4 border-romantic-pink border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            }>
+              <FloatingHeader />
+              <FloatingHearts />
+              <Timeline />
+              <Gallery />
+              <Surprise />
+            </Suspense>
             
             {/* Footer */}
             <footer className="py-12 bg-white/30 border-t border-white/50 text-center">
@@ -107,10 +97,9 @@ const Home = () => {
                 Forever & Always
               </p>
             </footer>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
-    </div>
+      </div>
   );
 };
 

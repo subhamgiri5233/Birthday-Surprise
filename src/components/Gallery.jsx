@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { memo } from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 
@@ -19,114 +18,99 @@ import img12 from '../assets/images/img12.jpg';
 import img13 from '../assets/images/img13.jpg';
 import img14 from '../assets/images/img14.jpg';
 
-const Gallery = () => {
-  // 15 photos in a triangle (5-4-3-2-1) for desktop
-  const desktopRows = [
-    [img1, img2, img3, img4, img5],
-    [img6, img7, img8, img9],
-    [img10, img11, img12],
-    [img13, img14],
-    [img1] 
+const Gallery = memo(() => {
+  // Photos organized to form a heart shape
+  const heartRows = [
+    { items: [img1, img2], hasGap: true, itemsAfter: [img3, img4] },
+    { items: [img5, img6, img7, img8, img9] },
+    { items: [img10, img11, img12, img13] },
+    { items: [img14, img1] },
+    { items: [img2] }
   ];
 
-  const allPhotos = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img1];
-
   return (
-    <section className="py-32 px-4 md:px-6 relative overflow-hidden">
+    <section className="py-32 px-4 md:px-6 relative overflow-hidden bg-romantic-soft/30">
       {/* Background Decorative Sparkle */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-romantic-pink/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-romantic-peach/10 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/2" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-20 px-4">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-serif text-gray-800 mb-6 tracking-tight premium-glow"
-          >
+          <h2 className="text-4xl md:text-6xl font-serif text-gray-800 mb-6 tracking-tight premium-glow">
             Memories Wrapped in Love
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-romantic-pink italic font-light text-lg md:text-xl"
-          >
+          </h2>
+          <p className="text-romantic-pink italic font-light text-lg md:text-xl">
             Our beautiful journey together, Monalisa...
-          </motion.p>
+          </p>
         </div>
 
         <PhotoProvider>
-          {/* Desktop View: Triangle Formation */}
-          <div className="hidden md:flex flex-col items-center gap-6">
-            {desktopRows.map((row, rowIndex) => (
-              <div key={rowIndex} className="flex justify-center gap-6 w-full">
-                {row.map((src, imgIndex) => (
-                  <motion.div
-                    key={`${rowIndex}-${imgIndex}`}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, delay: rowIndex * 0.1 + imgIndex * 0.05 }}
-                    className="relative group cursor-pointer w-36 h-36 lg:w-44 lg:h-44"
-                  >
-                    <PhotoView src={src}>
-                      <div className="w-full h-full relative group transform transition-all duration-500 hover:rotate-3 hover:scale-105 active:scale-95 z-10 shadow-xl heart-clip">
-                        <div className="w-full h-full bg-white/80 backdrop-blur-sm heart-clip p-1.5 shadow-inner">
-                          <img
-                            src={src}
-                            alt={`Memory Row ${rowIndex + 1}`}
-                            className="w-full h-full object-cover heart-clip transition-transform duration-1000 group-hover:scale-110"
-                            loading="lazy"
-                          />
-                        </div>
-                      </div>
-                    </PhotoView>
-                  </motion.div>
-                ))}
-              </div>
-            ))}
-          </div>
-
-          {/* Mobile View: High Performance Scrollable Grid */}
-          <div className="grid grid-cols-2 gap-4 md:hidden px-2">
-            {allPhotos.map((src, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index % 4 * 0.05 }}
-                className="relative group cursor-pointer aspect-square"
+          <div className="relative p-8 md:p-16">
+            {/* LARGE Heart Pen Animation Overlay */}
+            <div className="absolute inset-0 z-30 pointer-events-none p-4 md:p-8">
+              <svg 
+                className="w-full h-full overflow-visible" 
+                viewBox="0 0 100 100" 
+                preserveAspectRatio="none"
               >
-                <PhotoView src={src}>
-                  <div className="w-full h-full relative z-10 shadow-lg heart-clip">
-                    <div className="w-full h-full bg-white/80 heart-clip p-1 shadow-inner">
-                      <img
-                        src={src}
-                        alt={`Memory ${index + 1}`}
-                        className="w-full h-full object-cover heart-clip"
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-                </PhotoView>
-              </motion.div>
-            ))}
+                <path
+                  d="M50,95 C30,75 0,55 0,35 C0,15 15,0 35,0 C45,0 50,10 50,20 C50,10 55,0 65,0 C85,0 100,15 100,35 C100,55 70,75 50,95"
+                  fill="none"
+                  stroke="#ff4b5c"
+                  strokeWidth="0.5"
+                  strokeDasharray="400"
+                  strokeDashoffset="400"
+                  className="animate-[drawPath_5s_ease-in-out_infinite_alternate]"
+                  style={{ filter: 'drop-shadow(0 0 5px rgba(255, 75, 92, 0.4))' }}
+                />
+              </svg>
+            </div>
+
+            {/* Photo Grid */}
+            <div className="flex flex-col items-center gap-4 md:gap-6 relative z-10">
+              {heartRows.map((row, rowIndex) => (
+                <div key={rowIndex} className="flex justify-center items-center gap-4 md:gap-6 w-full">
+                  {row.items.map((src, idx) => (
+                    <PhotoItem key={`row-${rowIndex}-pre-${idx}`} src={src} />
+                  ))}
+                  
+                  {row.hasGap && (
+                    <div className="w-12 md:w-24 h-12 md:w-24 invisible" />
+                  )}
+                  
+                  {row.itemsAfter && row.itemsAfter.map((src, idx) => (
+                    <PhotoItem key={`row-${rowIndex}-post-${idx}`} src={src} />
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </PhotoProvider>
         
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="text-center mt-20 text-romantic-pink/60 italic font-serif px-4 text-xl md:text-2xl"
-        >
+        <div className="text-center mt-20 text-romantic-pink/60 italic font-serif px-4 text-xl md:text-2xl">
           ভালোবাসার প্রতিটি স্পন্দন শুধু তোমার জন্য...
-        </motion.div>
+        </div>
       </div>
     </section>
   );
-};
+});
+
+// Helper component for photo items to keep Gallery clean
+const PhotoItem = ({ src }) => (
+  <div className="relative group cursor-pointer w-24 h-24 md:w-36 md:h-36 lg:w-44 lg:h-44 shrink-0 transition-transform duration-500 hover:scale-110 active:scale-95">
+    <PhotoView src={src}>
+      <div className="w-full h-full relative z-10 shadow-xl heart-clip">
+        <div className="w-full h-full bg-white/80 backdrop-blur-sm heart-clip p-1 md:p-1.5 shadow-inner">
+          <img
+            src={src}
+            alt="Memory"
+            className="w-full h-full object-cover heart-clip transition-transform duration-1000 group-hover:scale-110"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </PhotoView>
+  </div>
+);
 
 export default Gallery;

@@ -5,16 +5,28 @@
   --color-romantic-pink: #ff4b5c;
   --color-romantic-peach: #fad0c4;
   --color-romantic-soft: #fff5f5;
-  
+
   --font-serif: "Playfair Display", serif;
   --font-sans: "Outfit", sans-serif;
-  
+
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   
+  @keyframes drawPath {
+    from { stroke-dashoffset: 400; }
+    to { stroke-dashoffset: 0; }
+  }
+
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
   }
 }
 
@@ -29,7 +41,10 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, .font-serif {
+h1,
+h2,
+h3,
+.font-serif {
   font-family: var(--font-serif);
 }
 
@@ -55,7 +70,7 @@ h1, h2, h3, .font-serif {
   .btn-romantic {
     @apply px-8 py-3 bg-romantic-pink text-white rounded-full font-semibold shadow-lg hover:bg-romantic-pink/90 transition-all active:scale-95;
   }
-  
+
   .glass-card {
     @apply bg-white/40 backdrop-blur-md border border-white/30 rounded-3xl shadow-xl;
   }
@@ -98,8 +113,36 @@ h1, h2, h3, .font-serif {
   }
 
   @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(100vh) scale(0) rotate(0deg);
+      opacity: 0;
+    }
+
+    20% {
+      opacity: 0.8;
+    }
+
+    100% {
+      transform: translateY(-100px) scale(1.5) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  .animate-float-up {
+    animation: floatUp linear infinite;
   }
 }
