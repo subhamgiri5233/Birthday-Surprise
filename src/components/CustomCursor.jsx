@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -15,23 +14,19 @@ const CustomCursor = () => {
 
   return (
     <>
-      <motion.div
-        className="fixed top-0 left-0 w-8 h-8 pointer-events-none z-[9999] hidden md:block"
-        animate={{
-          x: mousePosition.x - 16,
-          y: mousePosition.y - 16,
+      <div
+        className="fixed top-0 left-0 w-8 h-8 pointer-events-none z-[9999] hidden md:block transition-transform duration-75 ease-out"
+        style={{
+          transform: `translate(${mousePosition.x - 16}px, ${mousePosition.y - 16}px)`
         }}
-        transition={{ type: 'spring', damping: 20, stiffness: 250, mass: 0.5 }}
       >
         <div className="w-full h-full bg-romantic-pink/20 rounded-full blur-sm" />
-      </motion.div>
-      <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-romantic-pink rounded-full pointer-events-none z-[9999] hidden md:block"
-        animate={{
-          x: mousePosition.x - 4,
-          y: mousePosition.y - 4,
+      </div>
+      <div
+        className="fixed top-0 left-0 w-2 h-2 bg-romantic-pink rounded-full pointer-events-none z-[9999] hidden md:block transition-transform duration-0"
+        style={{
+          transform: `translate(${mousePosition.x - 4}px, ${mousePosition.y - 4}px)`
         }}
-        transition={{ type: 'spring', damping: 30, stiffness: 400, mass: 0.2 }}
       />
     </>
   );
