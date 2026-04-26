@@ -45,25 +45,25 @@ const Surprise = memo(() => {
         ...defaults,
         particleCount,
         origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-        colors: ['#ff4b5c', '#fad0c4', '#ffffff']
+        colors: ['#ff4d94', '#a349eb', '#ffffff', '#facc15']
       });
       confetti({
         ...defaults,
         particleCount,
         origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-        colors: ['#ff4b5c', '#fad0c4', '#ffffff']
+        colors: ['#ff4d94', '#a349eb', '#ffffff', '#facc15']
       });
     }, 250);
   };
 
   return (
-    <section className="py-24 px-6 relative overflow-hidden bg-gradient-to-t from-romantic-peach/20 to-romantic-soft flex flex-col items-center">
+    <section className="py-24 px-6 relative overflow-hidden flex flex-col items-center">
       {!showSurprise ? (
         <div className="text-center">
-          <h2 className="text-4xl font-serif text-gray-800 mb-8">Ready for the Final Surprise?</h2>
+          <h2 className="text-4xl font-serif text-white mb-8">Ready for the Final Surprise?</h2>
           <button
             onClick={handleReveal}
-            className="w-40 h-40 rounded-full bg-romantic-pink text-white flex flex-col items-center justify-center shadow-2xl shadow-romantic-pink/50 group relative hover:scale-110 active:scale-95 transition-transform"
+            className="w-40 h-40 rounded-full bg-gradient-to-br from-romantic-pink to-romantic-purple text-white flex flex-col items-center justify-center shadow-2xl shadow-romantic-pink/30 group relative hover:scale-110 active:scale-95 transition-transform"
           >
             <div className="absolute inset-0 bg-romantic-pink rounded-full opacity-20 animate-pulse" />
             <Gift size={48} className="mb-2 group-hover:animate-bounce relative z-10" />
@@ -73,22 +73,22 @@ const Surprise = memo(() => {
       ) : (
         <div className="text-center max-w-2xl px-4">
           <div className="mb-8 relative inline-block">
-            <div className="absolute -inset-8 text-romantic-peach/30">
+            <div className="absolute -inset-8 text-romantic-yellow/20">
               <Sparkles size={160} className="animate-[spin_20s_linear_infinite]" />
             </div>
-            <div>
-              <Heart size={100} className="text-romantic-pink fill-romantic-pink relative z-10" />
+            <div className="relative z-10 w-24 h-24 bg-gradient-to-br from-romantic-pink to-romantic-purple rounded-3xl flex items-center justify-center shadow-2xl shadow-romantic-pink/20">
+              <Heart size={48} className="text-white fill-white" />
             </div>
           </div>
 
-          <h2 className="text-5xl md:text-7xl font-serif text-gray-800 mb-2">
+          <h2 className="text-5xl md:text-7xl font-serif text-white mb-2 premium-glow">
             Happy Birthday, Monalisa!
           </h2>
-          <h3 className="text-3xl md:text-4xl font-serif text-romantic-pink mb-8 italic">
+          <h3 className="text-2xl md:text-3xl font-serif text-romantic-pink mb-12 italic opacity-90">
             শুভ জন্মদিন আমার ভালোবাসা
           </h3>
 
-          <div className="text-2xl md:text-4xl text-romantic-pink font-light h-32 md:h-24 italic leading-relaxed">
+          <div className="text-xl md:text-3xl text-slate-300 font-light h-32 md:h-24 italic leading-relaxed">
             <Typewriter
               words={[
                 "From the moment I met you… my world completely changed ❤️",
@@ -110,7 +110,10 @@ const Surprise = memo(() => {
             />
           </div>
 
-          <div className="glass-card p-8 mt-12 bg-white/60 text-lg text-gray-700 leading-relaxed italic">
+          <div className="glass-card p-10 mt-16 bg-white/5 border-white/10 text-lg text-slate-400 leading-relaxed italic relative">
+            <div className="absolute -top-4 -left-4 w-10 h-10 bg-romantic-yellow rounded-lg flex items-center justify-center -rotate-12 shadow-lg">
+              <Heart size={20} className="text-romantic-dark fill-romantic-dark" />
+            </div>
             <p>
               তোমার এই বিশেষ দিনে তোমাকে বলতে চাই—
               তুমি আমার জীবনের সবচেয়ে বড় পাওয়া।
@@ -118,7 +121,7 @@ const Surprise = memo(() => {
               আমাদের এই ভালোবাসা যেন সারা জীবন এভাবেই অমলিন থাকে।
               তুমি সবসময় সুখে থাকো—এই আমার একান্ত কামনা। 💫
             </p>
-            <p className="mt-4 text-romantic-pink font-bold">
+            <p className="mt-6 text-transparent bg-clip-text bg-gradient-to-r from-romantic-pink to-romantic-purple font-bold text-2xl not-italic">
               শুভ জন্মদিন মোনালিসা ! ❤️
             </p>
           </div>

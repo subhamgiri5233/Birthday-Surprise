@@ -1,5 +1,5 @@
 import React, { useState, useEffect, memo } from 'react';
-import { Heart, Star } from 'lucide-react';
+import { Heart, Star, Plus, Circle } from 'lucide-react';
 
 const TouchBurst = memo(() => {
   const [particles, setParticles] = useState([]);
@@ -11,22 +11,26 @@ const TouchBurst = memo(() => {
       
       if (x === undefined || y === undefined) return;
 
-      const newParticles = Array.from({ length: 8 }).map((_, i) => {
-        const angle = (i * 45 * Math.PI) / 180;
-        const velocity = 100 + Math.random() * 50;
+      const colors = ['#ff4d94', '#a349eb', '#facc15', '#ffffff'];
+      const shapes = ['heart', 'star', 'plus', 'circle'];
+
+      const newParticles = Array.from({ length: 12 }).map((_, i) => {
+        const angle = (i * 30 * Math.PI) / 180 + (Math.random() * 0.5);
+        const velocity = 80 + Math.random() * 100;
         return {
           id: Date.now() + i,
           x,
           y,
           tx: Math.cos(angle) * velocity,
           ty: Math.sin(angle) * velocity,
-          type: Math.random() > 0.5 ? 'heart' : 'star',
-          size: 10 + Math.random() * 15,
-          color: Math.random() > 0.5 ? '#ff4b5c' : '#fad0c4'
+          type: shapes[Math.floor(Math.random() * shapes.length)],
+          size: 8 + Math.random() * 12,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360
         };
       });
 
-      setParticles((prev) => [...prev, ...newParticles].slice(-40));
+      setParticles((prev) => [...prev, ...newParticles].slice(-60));
     };
 
     window.addEventListener('mousedown', handleClick);
@@ -43,7 +47,7 @@ const TouchBurst = memo(() => {
     if (particles.length === 0) return;
     const timer = setTimeout(() => {
       setParticles([]);
-    }, 1000);
+    }, 1200);
     return () => clearTimeout(timer);
   }, [particles]);
 
@@ -57,15 +61,15 @@ const TouchBurst = memo(() => {
             left: p.x,
             top: p.y,
             color: p.color,
+            transform: `rotate(${p.rotation}deg)`,
             '--tw-translate-x': `${p.tx}px`,
             '--tw-translate-y': `${p.ty}px`
           }}
         >
-          {p.type === 'heart' ? (
-            <Heart size={p.size} fill="currentColor" />
-          ) : (
-            <Star size={p.size} fill="currentColor" />
-          )}
+          {p.type === 'heart' && <Heart size={p.size} fill="currentColor" />}
+          {p.type === 'star' && <Star size={p.size} fill="currentColor" />}
+          {p.type === 'plus' && <Plus size={p.size} />}
+          {p.type === 'circle' && <Circle size={p.size} fill="currentColor" />}
         </div>
       ))}
     </div>

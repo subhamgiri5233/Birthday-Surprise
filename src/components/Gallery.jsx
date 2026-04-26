@@ -29,14 +29,14 @@ const Gallery = memo(() => {
   ];
 
   return (
-    <section className="py-32 px-4 md:px-6 relative overflow-hidden bg-romantic-soft/30">
-      {/* Background Decorative Sparkle */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-romantic-pink/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-romantic-peach/10 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/2" />
+    <section className="py-32 px-4 md:px-6 relative overflow-hidden">
+      {/* Background Decorative Glow */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-romantic-purple/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-romantic-pink/10 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/2" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-20 px-4">
-          <h2 className="text-4xl md:text-6xl font-serif text-gray-800 mb-6 tracking-tight premium-glow">
+          <h2 className="text-4xl md:text-6xl font-serif text-white mb-6 tracking-tight premium-glow">
             Memories Wrapped in Love
           </h2>
           <p className="text-romantic-pink italic font-light text-lg md:text-xl">
@@ -56,12 +56,12 @@ const Gallery = memo(() => {
                 <path
                   d="M50,95 C30,75 0,55 0,35 C0,15 15,0 35,0 C45,0 50,10 50,20 C50,10 55,0 65,0 C85,0 100,15 100,35 C100,55 70,75 50,95"
                   fill="none"
-                  stroke="#ff4b5c"
-                  strokeWidth="0.5"
+                  stroke="#ff4d94"
+                  strokeWidth="0.3"
                   strokeDasharray="400"
                   strokeDashoffset="400"
                   className="animate-[drawPath_5s_ease-in-out_infinite_alternate]"
-                  style={{ filter: 'drop-shadow(0 0 5px rgba(255, 75, 92, 0.4))' }}
+                  style={{ filter: 'drop-shadow(0 0 8px rgba(255, 77, 148, 0.6))' }}
                 />
               </svg>
             </div>
@@ -87,7 +87,7 @@ const Gallery = memo(() => {
           </div>
         </PhotoProvider>
         
-        <div className="text-center mt-20 text-romantic-pink/60 italic font-serif px-4 text-xl md:text-2xl">
+        <div className="text-center mt-20 text-slate-500 italic font-serif px-4 text-xl md:text-2xl">
           ভালোবাসার প্রতিটি স্পন্দন শুধু তোমার জন্য...
         </div>
       </div>
@@ -99,8 +99,8 @@ const Gallery = memo(() => {
 const PhotoItem = ({ src }) => (
   <div className="relative group cursor-pointer w-24 h-24 md:w-36 md:h-36 lg:w-44 lg:h-44 shrink-0 transition-transform duration-500 hover:scale-110 active:scale-95">
     <PhotoView src={src}>
-      <div className="w-full h-full relative z-10 shadow-xl heart-clip">
-        <div className="w-full h-full bg-white/80 backdrop-blur-sm heart-clip p-1 md:p-1.5 shadow-inner">
+      <div className="w-full h-full relative z-10 shadow-2xl heart-clip">
+        <div className="w-full h-full bg-white/10 backdrop-blur-sm heart-clip p-1 md:p-1.5 border border-white/20">
           <img
             src={src}
             alt="Memory"

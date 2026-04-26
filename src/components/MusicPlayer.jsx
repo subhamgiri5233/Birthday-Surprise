@@ -46,14 +46,14 @@ const MusicPlayer = ({ isPlaying, setIsPlaying }) => {
 
       <button
         onClick={() => setIsPlaying(!isPlaying)}
-        className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-romantic-pink hover:scale-110 transition-transform"
+        className="w-14 h-14 rounded-full bg-gradient-to-br from-romantic-pink to-romantic-purple shadow-xl shadow-romantic-pink/20 flex items-center justify-center text-white hover:scale-110 transition-transform border border-white/10"
       >
-        {isPlaying ? <Pause size={24} /> : <Play size={24} />}
+        {isPlaying ? <Pause size={28} /> : <Play size={28} />}
       </button>
 
       <button
         onClick={toggleMute}
-        className="w-10 h-10 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-600 hover:scale-110 transition-transform"
+        className="w-10 h-10 rounded-full bg-white/5 backdrop-blur-md shadow-md flex items-center justify-center text-slate-400 hover:scale-110 transition-transform border border-white/10"
       >
         {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
       </button>
